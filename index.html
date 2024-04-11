@@ -1,0 +1,554 @@
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="supported-color-schemes" content="light dark">
+    <title>HTML Email Template Boilerplate</title>
+    <style type="text/css">
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+        table {
+            border-spacing: 0;
+        }
+
+        td {
+            padding: 0;
+        }
+
+        p {
+            font-size: 15px;
+        }
+
+        img {
+            border: 0;
+        }
+
+        a {
+            color: #707070;
+            text-decoration: none;
+        }
+
+        @media screen and (max-width: 599.98px) {
+            .banner {
+                height: auto !important;
+                padding-top: 40px !important;
+                padding-bottom: 60px !important;
+            }
+
+            .two-columns .padding,
+            .two-third-columns .padding,
+            .three-columns .padding {
+                padding-right: 0 !important;
+                padding-left: 0 !important;
+            }
+
+            img.two-col-img {
+                width: 300px !important;
+                max-width: 300px !important;
+            }
+
+            .two-third-columns .padding.first {
+                padding-bottom: 0 !important;
+            }
+
+            .two-third-columns .padding.last {
+                padding-top: 0 !important;
+            }
+
+            img.washington,
+            img.three-col-img-last {
+                width: 200px !important;
+                max-width: 200px !important;
+            }
+
+            .two-third-columns .content {
+                text-align: center !important;
+            }
+        }
+
+        @media screen and (max-width: 399.98px) {
+            .banner {
+                padding-top: 10px !important;
+                padding-bottom: 40px !important;
+            }
+
+            img.three-col-img {
+                width: 200px !important;
+                max-width: 200px !important;
+            }
+        }
+
+        /* Custom Dark Mode Colors */
+
+        :root {
+            color-scheme: light dark;
+            supported-color-schemes: light dark;
+        }
+
+        @media (prefers-color-scheme: dark) {
+
+            body,
+            center,
+            table {
+                background-color: #ffffff;
+                color: #000000 !important;
+            }
+
+            .darkmode-transparent {
+                background-color: transparent !important;
+            }
+        }
+    </style>
+
+    <!--[if (gte mso 9)|(IE)]>
+        <style type="text/css">
+            table{border-collapse: collapse!important;}
+        </style>
+    <![endif]-->
+
+</head>
+
+<body style="margin: 0; padding: 0; min-width: 100%; background-color: #dde0e1;">
+
+    <!--[if (gte mso 9)|(IE)]>
+        <style type="text/css">
+            body {background-color: #dde0e1!important;}
+            body, table, td, p, a {font-family: sans-serif, Arial, Helvitica!important;}
+        </style>
+    <![endif]-->
+
+    <center style="width: 100%; table-layout: fixed; background-color: #dde0e1; padding-bottom: 40px;">
+        <div style="max-width: 600px; background-color: #fafdfe; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
+
+            <!--Preheader-->
+
+
+            <div
+                style="font-size: 0 px; color: #fafdfe; line-height: 1px; mso-line-height-rule:exactly; display: none; max-width: 0 px; max-height: 0px; opacity: 0; overflow: hidden; mso-hide:all">
+                This is the Preheader Text - With 50OFF cuopom!
+            </div>
+
+
+            <!--End Preheader-->
+
+
+            <!--[if (gte mso 9)|(IE)]>
+                <table width:"600" align="center" style="border-spacing:0; color:#565656"; role="presentation">
+                    <tr>
+                    <td style="padding:0;">
+            <![endif]-->
+
+
+            <table align="center"
+                style="border-spacing:0; color:#565656; font-family: 'Lato', sans-serif, Arial, Helvitica!important; background-color: #fafdfe; margin: 0; padding: 0; width: 100%; max-width: 600px;"
+                role="presentation">
+
+
+
+
+
+                <!-- START LOGO -->
+
+                <tr>
+                    <td style="padding: 0;">
+                        <table width="100%" style="border-spacing: 0;background-color: #ebf5fa;" role="presentation">
+                            <tr>
+                            <tr>
+                                <td style="padding: 10px; text-align: right;">
+                                    <a href="#" style="font-size: 14px; color: #555;">View in Browser</a>
+                                </td>
+                            </tr>
+                            <td style=" padding: 20px 0 20px 0; text-align: left;">
+                                <a href="https://example.com" target="_blank">
+                                    <img src="https://logos-download.com/wp-content/uploads/2023/02/Foodora_Logo-700x124.png"
+                                        alt="" width="180" border="0">
+                                </a>
+                            </td>
+
+                </tr>
+
+
+            </table>
+            </td>
+            </tr>
+
+
+            <!-- END LOGO -->
+
+            <!-- START BANNER -->
+            <tr>
+                <td align="center" style="padding: 0;">
+                    <img src="https://i.ibb.co/zN3x5rt/main.png" alt="Stats Banner" width="600" height="332"
+                        style="display: block; width: 100%; max-width: 600px; height: auto;">
+
+
+                </td>
+            </tr>
+            <!-- END BANNER -->
+
+            <!-- START TWO COLUMNS -->
+
+            <tr>
+            <tr>
+                <td style="text-align: center;">
+                    <h2 style="color: #c62f64;">This Week's Top Picks for You!</h2>
+                </td>
+            </tr>
+            <td style="padding: 15px 0 10px 0;">
+                <table width="100%" style="border-spacing: 0;" role="presentation">
+                    <tr>
+                        <td class="two-columns" style="padding: 0; font-size: 0; text-align: center;">
+
+                            <!--[if (gte mso 9)|(IE)]>
+                                        <table width="100%" style="border-spacing: 0;" role="presentation">
+                                            <tr>
+                                                <td width="300" valign="top" style="padding:0;">
+                                    <![endif]-->
+
+                            <table class="column"
+                                style="border-spacing: 0; vertical-align: top; width: 100%; max-width: 300px; display: inline-block;"
+                                role="presentation">
+                                <tr>
+                                    <td class="padding" style="padding: 20px;">
+                                        <table class="content" style="border-spacing: 0; text-align: left;"
+                                            role="presentation">
+                                            <tr>
+                                                <td>
+                                                    <a href="htpps://example.com" target="_blank"> <img
+                                                            class="two-col-img"
+                                                            src="https://i.ibb.co/9q1j7Bq/burger-min.png" alt="burger"
+                                                            ≈ style="max-width: 260px; border-radius: 8px;"
+                                                            border="0"></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 10px 10px 20px 10px;">
+                                                    <p style="font-size: 17px; font-weight: bold; line-height: 25px;">
+                                                        Mr. Fries</p>
+                                                    <p style="font-size: 15px; line-height: 20px;">Indulge in our
+                                                        crispy, golden fries like never before</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" style="padding-left: 10px;">
+                                                    <table align="left" border="0" cellpadding="0"
+                                                        style="border-spacing: 0;" role="presentation">
+                                                        <tr>
+                                                            <td style="border-radius: 10px;" bgcolor="#c62f64">
+                                                                <a href="https://example.com" target="_blank"
+                                                                    style="font-size: 16px; font-weight: bold; text-decoration: none; color: #ffffff; background-color: #c62f64; border: 1px solid #c62f64; border-radius: 10px; padding: 10px 25px; display: inline-block;">
+                                                                    Order Now</a>
+                                                            </td>
+
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!--[if (gte mso 9)|(IE)]>
+                                    </td><td width="300" valign="top" style="padding: 0;">
+                                    <![endif]-->
+
+                            <table class="column"
+                                style="border-spacing: 0; vertical-align: top; width: 100%; max-width: 300px; display: inline-block;"
+                                role="presentation">
+                                <tr>
+                                    <td class="padding" style="padding: 20px;">
+                                        <table class="content" style="border-spacing: 0; text-align: left;"
+                                            role="presentation">
+                                            <tr>
+                                                <td>
+                                                    <a href="htpps://example.com" target="_blank"> <img
+                                                            class="two-col-img"
+                                                            src="https://i.ibb.co/WcjS3w9/tacos-min.png" alt="tacos"
+                                                            width="260" style="max-width: 260px; border-radius: 8px;"
+                                                            border="0"></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 10px 10px 20px 10px;">
+                                                    <p style="font-size: 17px; font-weight: bold; line-height: 25px; ">
+                                                        Jin´s Ramen Zieglergasse</p>
+                                                    <p style="font-size: 15px; line-height: 20px;">Savor the warmth and
+                                                        depth of flavors bowls</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td align="left" style="padding-left: 10px;">
+                                                    <table align="left" border="0" cellpadding="0"
+                                                        style="border-spacing: 0;" role="presentation">
+                                                        <tr>
+                                                            <td style="border-radius: 10px;" bgcolor="#c62f64">
+                                                                <a href="https://example.com" target="_blank"
+                                                                    style="font-size: 16px; font-weight: bold; text-decoration: none; color: #ffffff; background-color: #c62f64; border: 1px solid #c62f64; border-radius: 10px; padding: 10px 25px; display: inline-block;">Order
+                                                                    now</a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+
+
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <!--[if (gte mso 9)|(IE)]>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    <![endif]-->
+
+
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+            </tr>
+
+            <!-- END TWO COLUMNS -->
+            <!-- START TWO COLUMNS -->
+
+            <tr>
+
+                <td style="padding: 15px 0 10px 0;">
+                    <table width="100%" style="border-spacing: 0;" role="presentation">
+                        <tr>
+                            <td class="two-columns" style="padding: 0; font-size: 0; text-align: center;">
+
+                                <!--[if (gte mso 9)|(IE)]>
+                                        <table width="100%" style="border-spacing: 0;" role="presentation">
+                                            <tr>
+                                                <td width="300" valign="top" style="padding:0;">
+                                    <![endif]-->
+
+                                <table class="column"
+                                    style="border-spacing: 0; vertical-align: top; width: 100%; max-width: 300px; display: inline-block;"
+                                    role="presentation">
+                                    <tr>
+                                        <td class="padding" style="padding: 20px;">
+                                            <table class="content" style="border-spacing: 0; text-align: left;"
+                                                role="presentation">
+                                                <tr>
+                                                    <td>
+                                                        <a href="htpps://example.com" target="_blank"> <img
+                                                                class="two-col-img"
+                                                                src="https://i.ibb.co/9q1j7Bq/burger-min.png"
+                                                                alt="burger" width="260"
+                                                                style="max-width: 260px; border-radius: 8px;"
+                                                                border="0"></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding: 10px 10px 20px 10px;">
+                                                        <p
+                                                            style="font-size: 17px; font-weight: bold; line-height: 25px;">
+                                                            Mr. Fries</p>
+                                                        <p style="font-size: 15px; line-height: 20px;">Indulge in our
+                                                            crispy, golden fries like never before</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" style="padding-left: 10px;">
+                                                        <table align="left" border="0" cellpadding="0"
+                                                            style="border-spacing: 0;" role="presentation">
+                                                            <tr>
+                                                                <td style="border-radius: 10px;" bgcolor="#c62f64">
+                                                                    <a href="https://example.com" target="_blank"
+                                                                        style="font-size: 16px; font-weight: bold; text-decoration: none; color: #ffffff; background-color: #c62f64; border: 1px solid #c62f64; border-radius: 10px; padding: 10px 25px; display: inline-block;">
+                                                                        Order Now</a>
+                                                                </td>
+
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <!--[if (gte mso 9)|(IE)]>
+                                    </td><td width="300" valign="top" style="padding: 0;">
+                                    <![endif]-->
+
+                                <table class="column"
+                                    style="border-spacing: 0; vertical-align: top; width: 100%; max-width: 300px; display: inline-block;"
+                                    role="presentation">
+                                    <tr>
+                                        <td class="padding" style="padding: 20px;">
+                                            <table class="content" style="border-spacing: 0; text-align: left;"
+                                                role="presentation">
+                                                <tr>
+                                                    <td>
+                                                        <a href="htpps://example.com" target="_blank"> <img
+                                                                class="two-col-img"
+                                                                src="https://i.ibb.co/WcjS3w9/tacos-min.png" alt="tacos"
+                                                                width="260"
+                                                                style="max-width: 260px; border-radius: 8px;"
+                                                                border="0"></a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding: 10px 10px 20px 10px;">
+                                                        <p
+                                                            style="font-size: 17px; font-weight: bold; line-height: 25px; ">
+                                                            Jin´s Ramen Zieglergasse</p>
+                                                        <p style="font-size: 15px; line-height: 20px;">Savor the warmth
+                                                            and depth of flavors bowls</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" style="padding-left: 10px;">
+                                                        <table align="left" border="0" cellpadding="0"
+                                                            style="border-spacing: 0;" role="presentation">
+                                                            <tr>
+                                                                <td style="border-radius: 10px;" bgcolor="#c62f64">
+                                                                    <a href="https://example.com" target="_blank"
+                                                                        style="font-size: 16px; font-weight: bold; text-decoration: none; color: #ffffff; background-color: #c62f64; border: 1px solid #c62f64; border-radius: 10px; padding: 10px 25px; display: inline-block;">Order
+                                                                        now</a>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+
+
+
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <!--[if (gte mso 9)|(IE)]>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    <![endif]-->
+
+
+                            </td>
+                        </tr>
+
+                    </table>
+                </td>
+            </tr>
+
+            <!-- END TWO COLUMNS -->
+            <tr>
+                <td style="text-align: center; background-color: #c62f64; padding: 20px; ">
+                    <h3 style="color: #ffffff; Margin:0; font-size: 24px;">Want More Delicious Deals?</h3>
+                    <p style="Margin:10px 0 20px 0; font-size: 16px; color: #ffffff;">Download the Foodora app for
+                        exclusive offers, easy ordering, and real-time tracking.</p>
+                    <!--[if mso]>
+                      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="#" style="height:40px;v-text-anchor:middle;width:200px;" arcsize="10%" strokecolor="#ffffff" fillcolor="#ffffff">
+                        <w:anchorlock/>
+                        <center style="color:#f06292;font-family:sans-serif;font-size:16px;font-weight:bold;">Download the App</center>
+                      </v:roundrect>
+                      <![endif]-->
+                    <![if !mso]>
+                    <a href="#"
+                        style="background-color: #ffffff; color: #c62f64; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; font-family: sans-serif; font-size: 16px; font-weight: bold;">Download
+                        the App</a>
+                    <![endif]>
+                </td>
+            </tr>
+            <!-- START SOCIAL ICONS -->
+
+            <td style="padding: 0;">
+                <table width="100%" style="border-spacing: 0; " role="presentation">
+                    <tr>
+                        <td style="text-align: center; padding: 10px 0 8px 0;">
+                            <a href="https://example.com" target="_blank "> Facebook | </a>
+                            <a href="https://example.com" target="_blank "> Twitter | </a>
+                            <a href="https://example.com" target="_blank "> Instagram </a>
+                        </td>
+                    </tr>
+
+
+                </table>
+            </td>
+            </tr>
+
+
+            <!-- END SOCIAL ICONS -->
+
+
+            <!-- START FOOTER -->
+            <tr style="background-color: #F5F5F5;">
+                <td style="padding: 0; background-color: #D3D3D3;">
+                    <table width="100%" style="border-spacing: 0;" role="presentation">
+                        <tr>
+                            <td style="padding: 10px 0 10px 0; text-align: center; font-size: 16px;">
+                                <!--[if mso]>
+                                <table role="presentation" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td align="center" style="padding-right: 20px;">
+                                <![endif]-->
+                                <a href="https://apps.apple.com/us/app/foodora-food-delivery/id975208947?mt=8" target="_blank">
+                                    <img src="https://i.ibb.co/ykFhN3Y/IOS.png" alt="IOS" style="vertical-align: middle; width: 140px; height: 44px; margin: 0 10px; display: inline-block;">
+                                </a>
+                                <!--[if mso]>
+                                        </td>
+                                        <td align="center">
+                                <![endif]-->
+                                <a href="https://play.google.com/store/apps/details?id=hu.viala.newiapp&referrer=adjust_reftag%3Dcv6DGaMSFtlP1%26utm_source%3DWebsite%26utm_campaign%3Dhu_homepage_android" target="_blank">
+                                    <img src="https://i.ibb.co/rfZ4YnS/android.png" alt="android"  style="vertical-align: middle; width: 140px; height: 44px; margin: 0 10px; display: inline-block;">
+                                </a>
+                                <!--[if mso]>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <![endif]-->
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px 10px; text-align: center; color: #707070;">
+                                <a href="https://foodora.com/terms-conditions" target="_blank" style="color: #707070; text-decoration: none; margin: 0 5px;">Terms & Conditions</a>|
+                                <a href="https://foodora.com/privacy-policy" target="_blank" style="color: #707070; text-decoration: none; margin: 0 5px;">Privacy & Cookie Policy</a>|
+                                <a href="mailto:unsubscribe@marketing.foodora.com?subject=Unsubscribe" style="color: #707070; text-decoration: none; margin: 0 5px;">Unsubscribe</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; text-align: center; color: #707070;">
+                                <p style="font-size: 16px; color: #707070;">To make sure you don't miss out on the latest alerts and recommendations, add hello@marketing.foodora.com to your address book.</p>
+                                <p style="font-size: 16px; color: #707070;">These services are operated and provided by: Oranienburger Strasse 70 Berlin, 10117 Germany</p>
+                            </td>
+                        </tr>
+                        <tr>
+                       
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            <!-- END FOOTER -->
+
+
+            </table>
+
+            <!--[if (gte mso 9)|(IE)]>
+                </td>
+                </tr>
+                </table>
+            <![endif]-->
+
+        </div>
+    </center>
+
+</body>
+
+</html>
+
