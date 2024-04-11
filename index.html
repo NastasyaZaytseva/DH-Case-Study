@@ -1,554 +1,462 @@
-<!DOCTYPE html
-    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<!doctype html>
+<html lang="en">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="color-scheme" content="light dark">
-    <meta name="supported-color-schemes" content="light dark">
-    <title>HTML Email Template Boilerplate</title>
-    <style type="text/css">
-        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Single Page Modal</title>
 
-        table {
-            border-spacing: 0;
+    <style>
+        /* fonts */
+        @font-face {
+            font-family: 'Sailec Bold';
+            src: url('https://appboy-images.com/appboy/communication/assets/font_assets/files/5f2d540126e78f1669f53229/original.otf?1596806145') format('truetype');
         }
 
-        td {
+        @font-face {
+            font-family: 'Sailec Normal';
+            src: url('https://appboy-images.com/appboy/communication/assets/font_assets/files/5f2d5401ff0a7415251998d6/original.otf?1596806145') format('truetype');
+        }
+
+        :root {
+            --header-font-stack: 'Sailec Bold', helvetica, arial, sans-serif;
+            --body-font-stack: 'Sailec Normal', helvetica, arial, sans-serif;
+        }
+
+        /* Box sizing rules */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        /* Remove default padding */
+        ul[class],
+        ol[class] {
             padding: 0;
         }
 
-        p {
-            font-size: 15px;
+        /* Remove default margin */
+        body,
+        h1,
+        h2,
+        h3,
+        h4,
+        p,
+        ul[class],
+        ol[class],
+        li,
+        figure,
+        figcaption,
+        blockquote,
+        dl,
+        dd {
+            margin: 0;
         }
 
+        /* Set core body defaults */
+        body {
+            min-height: 100vh;
+            scroll-behavior: smooth;
+            text-rendering: optimizeSpeed;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Remove list styles on ul, ol elements with a class attribute */
+        ul[class],
+        ol[class] {
+            list-style: none;
+        }
+
+        /* A elements that don't have a class get default styles */
+        a:not([class]) {
+            text-decoration-skip-ink: auto;
+        }
+
+        /* Make images easier to work with */
         img {
-            border: 0;
+            max-width: 100%;
+            display: block;
         }
 
+        /* Natural flow and rhythm in articles by default */
+        article>*+* {
+            margin-top: 1em;
+        }
+
+        /* Inherit fonts for inputs and buttons */
+        input,
+        button,
+        a,
+        textarea,
+        select {
+            font: inherit;
+        }
+
+        button,
         a {
-            color: #707070;
+            border: none;
+            background-color: transparent;
             text-decoration: none;
         }
 
-        @media screen and (max-width: 599.98px) {
-            .banner {
-                height: auto !important;
-                padding-top: 40px !important;
-                padding-bottom: 60px !important;
+        .overlay {
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 100vw;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 99999;
+        }
+
+        .modal {
+            display: flex;
+            height: 450px;
+            max-width: 900px;
+            flex-basis: 900px;
+            margin: auto;
+        }
+
+        .modal__image {
+            height: 450px;
+            max-width: 450px;
+            flex-basis: 450px;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+
+        .modal__content {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            height: 450px;
+            max-width: 450px;
+            flex-basis: 450px;
+            padding: 60px 40px 40px;
+            background-color: rgb(255, 255, 255);
+        }
+
+        .modal__cross {
+            position: absolute;
+            top: 20px;
+            right: 5px;
+            cursor: pointer;
+        }
+
+        .modal__title {
+            width: 300px;
+            margin-bottom: 10px;
+            font-size: 36px;
+            line-height: 1.2;
+            color: #101B24;
+            font-family: var(--header-font-stack);
+        }
+
+        .modal__sub-title {
+            margin-bottom: 10px;
+            font-family: var(--header-font-stack);
+            font-size: 16px;
+            color: #76848C;
+        }
+
+        .modal__text {
+            font-family: var(--body-font-stack);
+            font-size: 14px;
+            color: #101B24;
+            line-height: 1.5;
+        }
+
+        .modal__button-wrap {
+            margin-top: auto;
+            justify-content: space-around;
+            display: flex;
+        }
+
+        .modal__btn {
+            font-family: var(--header-font-stack);
+            font-weight: 700;
+            color: inherit;
+            min-height: 50px;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            min-width: 140px;
+            text-align: center;
+        }
+
+        .modal__btn--main {
+
+            padding: 8px 16px;
+            background-color: #c62f64;
+            color: rgb(255, 255, 255);
+            font-size: 14px;
+
+        }
+
+        .modal__btn--secondary {
+            padding: 4px 108px;
+            border: 1px solid #A8B3B8;
+            font-size: 14px;
+        }
+
+        .modal__cross-mobile {
+            display: none !important;
+        }
+
+        .modal__nav-btn {
+            position: absolute;
+            top: 20px;
+            right: 60px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .modal__nav-btn--prev {
+            right: 90px;
+        }
+
+        .modal__nav-btn--next {
+            right: 60px;
+        }
+
+
+        /*Phones*/
+        @media (max-width: 900px) {
+            .modal {
+                height: auto;
+                max-width: 330px;
+                flex-basis: 330px;
+                margin: auto;
+                display: flex;
+                flex-direction: column;
+                position: relative;
             }
 
-            .two-columns .padding,
-            .two-third-columns .padding,
-            .three-columns .padding {
-                padding-right: 0 !important;
-                padding-left: 0 !important;
+            .modal__cross-mobile {
+                border-radius: 50%;
+                background: white;
+                display: flex !important;
+                justify-content: center;
+                padding: 1px;
             }
 
-            img.two-col-img {
-                width: 300px !important;
-                max-width: 300px !important;
+            .modal__cross-web {
+                display: none !important;
             }
 
-            .two-third-columns .padding.first {
-                padding-bottom: 0 !important;
+            .modal__title,
+            .modal__sub-title {
+                margin-bottom: 8px;
             }
 
-            .two-third-columns .padding.last {
-                padding-top: 0 !important;
+            .modal__title {
+                font-size: 23px;
+
             }
 
-            img.washington,
-            img.three-col-img-last {
-                width: 200px !important;
-                max-width: 200px !important;
+            .modal__image {
+                height: 330px;
+                flex-basis: 330px;
             }
 
-            .two-third-columns .content {
-                text-align: center !important;
+            .modal__content {
+                display: flex;
+                flex-direction: column;
+                position: relative;
+                height: auto;
+                max-width: 330px;
+                flex-basis: auto;
+                padding: 24px 16px 24px 16px;
+                background-color: rgb(255, 255, 255);
+                justify-content: space-between;
+            }
+
+
+            .modal__button-wrap {
+                display: flex;
+                margin-top: 24px;
+                margin-left: 0px;
+                justify-content: space-between;
+            }
+
+            .modal__btn {
+                width: 140px;
+                padding: 8px 8px;
+            }
+
+
+            .modal__carousel-toggle {
+                background-color: transparent;
+            }
+
+            .modal__carousel-navigation.is-active {
+                background-color: white;
             }
         }
 
-        @media screen and (max-width: 399.98px) {
-            .banner {
-                padding-top: 10px !important;
-                padding-bottom: 40px !important;
+        @media (orientation: landscape) and (max-width: 900px) {
+            .modal {
+                max-width: 660px;
+                flex-basis: 660px;
             }
 
-            img.three-col-img {
-                width: 200px !important;
-                max-width: 200px !important;
+            .modal {
+                display: flex;
+                flex-direction: row;
+                height: 330px;
+                margin: auto;
+            }
+
+            .modal__cross {
+                right: unset;
+                left: 14px;
             }
         }
 
-        /* Custom Dark Mode Colors */
+        @media (orientation: landscape) and (max-width: 569px) {
+            .modal {
+                max-width: 568px;
+                flex-basis: 568px;
+            }
 
-        :root {
-            color-scheme: light dark;
-            supported-color-schemes: light dark;
+            .overlay {
+                overflow-y: scroll;
+            }
         }
 
-        @media (prefers-color-scheme: dark) {
-
-            body,
-            center,
-            table {
-                background-color: #ffffff;
-                color: #000000 !important;
+        @media (max-width: 320px) {
+            .overlay {
+                overflow-y: scroll;
             }
+        }
 
-            .darkmode-transparent {
-                background-color: transparent !important;
-            }
+        .image-1 {
+            background-image: url('https://i.ibb.co/nDp2SzW/burger.png');
         }
     </style>
-
-    <!--[if (gte mso 9)|(IE)]>
-        <style type="text/css">
-            table{border-collapse: collapse!important;}
-        </style>
-    <![endif]-->
-
 </head>
-
-<body style="margin: 0; padding: 0; min-width: 100%; background-color: #dde0e1;">
-
-    <!--[if (gte mso 9)|(IE)]>
-        <style type="text/css">
-            body {background-color: #dde0e1!important;}
-            body, table, td, p, a {font-family: sans-serif, Arial, Helvitica!important;}
-        </style>
-    <![endif]-->
-
-    <center style="width: 100%; table-layout: fixed; background-color: #dde0e1; padding-bottom: 40px;">
-        <div style="max-width: 600px; background-color: #fafdfe; box-shadow: 0 0 10px rgba(0,0,0,0.2);">
-
-            <!--Preheader-->
-
-
-            <div
-                style="font-size: 0 px; color: #fafdfe; line-height: 1px; mso-line-height-rule:exactly; display: none; max-width: 0 px; max-height: 0px; opacity: 0; overflow: hidden; mso-hide:all">
-                This is the Preheader Text - With 50OFF cuopom!
+<body>
+    <div class="overlay">
+        <div class="modal" id="modalOverlay">
+            <button data-button-id="close" class="modal__cross modal__cross-mobile">
+                <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M14.4175 16.8419L8.51467 10.9391C7.8452 10.2696 7.8452 9.18422 8.51467 8.51475C9.18414 7.84528 10.2696 7.84528 10.939 8.51475L16.8418 14.4176L22.7446 8.51475C23.4141 7.84528 24.4995 7.84528 25.169 8.51475C25.8385 9.18422 25.8385 10.2696 25.169 10.9391L19.2662 16.8419L25.169 22.7447C25.8385 23.4142 25.8385 24.4996 25.169 25.1691C24.4995 25.8386 23.4141 25.8386 22.7446 25.1691L16.8418 19.2663L10.939 25.1691C10.2696 25.8386 9.18414 25.8386 8.51467 25.1691C7.8452 24.4996 7.8452 23.4142 8.51467 22.7447L14.4175 16.8419Z"
+                        fill="#A8B3B8" />
+                </svg>
+            </button>
+            <div class="modal__image image-1"></div>
+            <div class="modal__content">
+                <button data-button-id="close" class="modal__cross modal__cross-web">
+                    <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M14.4175 16.8419L8.51467 10.9391C7.8452 10.2696 7.8452 9.18422 8.51467 8.51475C9.18414 7.84528 10.2696 7.84528 10.939 8.51475L16.8418 14.4176L22.7446 8.51475C23.4141 7.84528 24.4995 7.84528 25.169 8.51475C25.8385 9.18422 25.8385 10.2696 25.169 10.9391L19.2662 16.8419L25.169 22.7447C25.8385 23.4142 25.8385 24.4996 25.169 25.1691C24.4995 25.8386 23.4141 25.8386 22.7446 25.1691L16.8418 19.2663L10.939 25.1691C10.2696 25.8386 9.18414 25.8386 8.51467 25.1691C7.8452 24.4996 7.8452 23.4142 8.51467 22.7447L14.4175 16.8419Z"
+                            fill="#A8B3B8" />
+                    </svg>
+                </button>
+                <button class="modal__nav-btn modal__nav-btn--prev" id="prevBtn">←</button>
+                <button class="modal__nav-btn modal__nav-btn--next" id="nextBtn">→</button>
+                <div class="modal__content-text">
+                    <h1 class="modal__title" id="modalTitle">This is where the modal title goes</h1>
+                    <h2 class="modal__sub-title" id="modalSubTitle">Sub head maybe here that is not too long</h2>
+                    <p class="modal__text" id="modalText">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                </div>
+                <div class="modal__button-wrap">
+                    <a href="#" class="modal__btn modal__btn--main" data-button-id="0">Order now</a>
+                </div>
+                <div class="modal__button-wrap">
+                    <a href="https://www.yemeksepeti.com/" class="modal__btn modal__btn--secondary"
+                        data-button-id="1"><img src="https://i.ibb.co/h9f1ZBK/logo-Yemeksepeti.png"
+                            alt="logo-Yemeksepeti" border="0"></a>
+                </div>
             </div>
-
-
-            <!--End Preheader-->
-
-
-            <!--[if (gte mso 9)|(IE)]>
-                <table width:"600" align="center" style="border-spacing:0; color:#565656"; role="presentation">
-                    <tr>
-                    <td style="padding:0;">
-            <![endif]-->
-
-
-            <table align="center"
-                style="border-spacing:0; color:#565656; font-family: 'Lato', sans-serif, Arial, Helvitica!important; background-color: #fafdfe; margin: 0; padding: 0; width: 100%; max-width: 600px;"
-                role="presentation">
-
-
-
-
-
-                <!-- START LOGO -->
-
-                <tr>
-                    <td style="padding: 0;">
-                        <table width="100%" style="border-spacing: 0;background-color: #ebf5fa;" role="presentation">
-                            <tr>
-                            <tr>
-                                <td style="padding: 10px; text-align: right;">
-                                    <a href="#" style="font-size: 14px; color: #555;">View in Browser</a>
-                                </td>
-                            </tr>
-                            <td style=" padding: 20px 0 20px 0; text-align: left;">
-                                <a href="https://example.com" target="_blank">
-                                    <img src="https://logos-download.com/wp-content/uploads/2023/02/Foodora_Logo-700x124.png"
-                                        alt="" width="180" border="0">
-                                </a>
-                            </td>
-
-                </tr>
-
-
-            </table>
-            </td>
-            </tr>
-
-
-            <!-- END LOGO -->
-
-            <!-- START BANNER -->
-            <tr>
-                <td align="center" style="padding: 0;">
-                    <img src="https://i.ibb.co/zN3x5rt/main.png" alt="Stats Banner" width="600" height="332"
-                        style="display: block; width: 100%; max-width: 600px; height: auto;">
-
-
-                </td>
-            </tr>
-            <!-- END BANNER -->
-
-            <!-- START TWO COLUMNS -->
-
-            <tr>
-            <tr>
-                <td style="text-align: center;">
-                    <h2 style="color: #c62f64;">This Week's Top Picks for You!</h2>
-                </td>
-            </tr>
-            <td style="padding: 15px 0 10px 0;">
-                <table width="100%" style="border-spacing: 0;" role="presentation">
-                    <tr>
-                        <td class="two-columns" style="padding: 0; font-size: 0; text-align: center;">
-
-                            <!--[if (gte mso 9)|(IE)]>
-                                        <table width="100%" style="border-spacing: 0;" role="presentation">
-                                            <tr>
-                                                <td width="300" valign="top" style="padding:0;">
-                                    <![endif]-->
-
-                            <table class="column"
-                                style="border-spacing: 0; vertical-align: top; width: 100%; max-width: 300px; display: inline-block;"
-                                role="presentation">
-                                <tr>
-                                    <td class="padding" style="padding: 20px;">
-                                        <table class="content" style="border-spacing: 0; text-align: left;"
-                                            role="presentation">
-                                            <tr>
-                                                <td>
-                                                    <a href="htpps://example.com" target="_blank"> <img
-                                                            class="two-col-img"
-                                                            src="https://i.ibb.co/9q1j7Bq/burger-min.png" alt="burger"
-                                                            ≈ style="max-width: 260px; border-radius: 8px;"
-                                                            border="0"></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="padding: 10px 10px 20px 10px;">
-                                                    <p style="font-size: 17px; font-weight: bold; line-height: 25px;">
-                                                        Mr. Fries</p>
-                                                    <p style="font-size: 15px; line-height: 20px;">Indulge in our
-                                                        crispy, golden fries like never before</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" style="padding-left: 10px;">
-                                                    <table align="left" border="0" cellpadding="0"
-                                                        style="border-spacing: 0;" role="presentation">
-                                                        <tr>
-                                                            <td style="border-radius: 10px;" bgcolor="#c62f64">
-                                                                <a href="https://example.com" target="_blank"
-                                                                    style="font-size: 16px; font-weight: bold; text-decoration: none; color: #ffffff; background-color: #c62f64; border: 1px solid #c62f64; border-radius: 10px; padding: 10px 25px; display: inline-block;">
-                                                                    Order Now</a>
-                                                            </td>
-
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-
-                            <!--[if (gte mso 9)|(IE)]>
-                                    </td><td width="300" valign="top" style="padding: 0;">
-                                    <![endif]-->
-
-                            <table class="column"
-                                style="border-spacing: 0; vertical-align: top; width: 100%; max-width: 300px; display: inline-block;"
-                                role="presentation">
-                                <tr>
-                                    <td class="padding" style="padding: 20px;">
-                                        <table class="content" style="border-spacing: 0; text-align: left;"
-                                            role="presentation">
-                                            <tr>
-                                                <td>
-                                                    <a href="htpps://example.com" target="_blank"> <img
-                                                            class="two-col-img"
-                                                            src="https://i.ibb.co/WcjS3w9/tacos-min.png" alt="tacos"
-                                                            width="260" style="max-width: 260px; border-radius: 8px;"
-                                                            border="0"></a>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="padding: 10px 10px 20px 10px;">
-                                                    <p style="font-size: 17px; font-weight: bold; line-height: 25px; ">
-                                                        Jin´s Ramen Zieglergasse</p>
-                                                    <p style="font-size: 15px; line-height: 20px;">Savor the warmth and
-                                                        depth of flavors bowls</p>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td align="left" style="padding-left: 10px;">
-                                                    <table align="left" border="0" cellpadding="0"
-                                                        style="border-spacing: 0;" role="presentation">
-                                                        <tr>
-                                                            <td style="border-radius: 10px;" bgcolor="#c62f64">
-                                                                <a href="https://example.com" target="_blank"
-                                                                    style="font-size: 16px; font-weight: bold; text-decoration: none; color: #ffffff; background-color: #c62f64; border: 1px solid #c62f64; border-radius: 10px; padding: 10px 25px; display: inline-block;">Order
-                                                                    now</a>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                            </tr>
-                                        </table>
-
-
-
-                                    </td>
-                                </tr>
-                            </table>
-
-                            <!--[if (gte mso 9)|(IE)]>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    <![endif]-->
-
-
-                        </td>
-                    </tr>
-
-                </table>
-            </td>
-            </tr>
-
-            <!-- END TWO COLUMNS -->
-            <!-- START TWO COLUMNS -->
-
-            <tr>
-
-                <td style="padding: 15px 0 10px 0;">
-                    <table width="100%" style="border-spacing: 0;" role="presentation">
-                        <tr>
-                            <td class="two-columns" style="padding: 0; font-size: 0; text-align: center;">
-
-                                <!--[if (gte mso 9)|(IE)]>
-                                        <table width="100%" style="border-spacing: 0;" role="presentation">
-                                            <tr>
-                                                <td width="300" valign="top" style="padding:0;">
-                                    <![endif]-->
-
-                                <table class="column"
-                                    style="border-spacing: 0; vertical-align: top; width: 100%; max-width: 300px; display: inline-block;"
-                                    role="presentation">
-                                    <tr>
-                                        <td class="padding" style="padding: 20px;">
-                                            <table class="content" style="border-spacing: 0; text-align: left;"
-                                                role="presentation">
-                                                <tr>
-                                                    <td>
-                                                        <a href="htpps://example.com" target="_blank"> <img
-                                                                class="two-col-img"
-                                                                src="https://i.ibb.co/9q1j7Bq/burger-min.png"
-                                                                alt="burger" width="260"
-                                                                style="max-width: 260px; border-radius: 8px;"
-                                                                border="0"></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="padding: 10px 10px 20px 10px;">
-                                                        <p
-                                                            style="font-size: 17px; font-weight: bold; line-height: 25px;">
-                                                            Mr. Fries</p>
-                                                        <p style="font-size: 15px; line-height: 20px;">Indulge in our
-                                                            crispy, golden fries like never before</p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td align="left" style="padding-left: 10px;">
-                                                        <table align="left" border="0" cellpadding="0"
-                                                            style="border-spacing: 0;" role="presentation">
-                                                            <tr>
-                                                                <td style="border-radius: 10px;" bgcolor="#c62f64">
-                                                                    <a href="https://example.com" target="_blank"
-                                                                        style="font-size: 16px; font-weight: bold; text-decoration: none; color: #ffffff; background-color: #c62f64; border: 1px solid #c62f64; border-radius: 10px; padding: 10px 25px; display: inline-block;">
-                                                                        Order Now</a>
-                                                                </td>
-
-                                                            </tr>
-                                                        </table>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </table>
-
-                                <!--[if (gte mso 9)|(IE)]>
-                                    </td><td width="300" valign="top" style="padding: 0;">
-                                    <![endif]-->
-
-                                <table class="column"
-                                    style="border-spacing: 0; vertical-align: top; width: 100%; max-width: 300px; display: inline-block;"
-                                    role="presentation">
-                                    <tr>
-                                        <td class="padding" style="padding: 20px;">
-                                            <table class="content" style="border-spacing: 0; text-align: left;"
-                                                role="presentation">
-                                                <tr>
-                                                    <td>
-                                                        <a href="htpps://example.com" target="_blank"> <img
-                                                                class="two-col-img"
-                                                                src="https://i.ibb.co/WcjS3w9/tacos-min.png" alt="tacos"
-                                                                width="260"
-                                                                style="max-width: 260px; border-radius: 8px;"
-                                                                border="0"></a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="padding: 10px 10px 20px 10px;">
-                                                        <p
-                                                            style="font-size: 17px; font-weight: bold; line-height: 25px; ">
-                                                            Jin´s Ramen Zieglergasse</p>
-                                                        <p style="font-size: 15px; line-height: 20px;">Savor the warmth
-                                                            and depth of flavors bowls</p>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td align="left" style="padding-left: 10px;">
-                                                        <table align="left" border="0" cellpadding="0"
-                                                            style="border-spacing: 0;" role="presentation">
-                                                            <tr>
-                                                                <td style="border-radius: 10px;" bgcolor="#c62f64">
-                                                                    <a href="https://example.com" target="_blank"
-                                                                        style="font-size: 16px; font-weight: bold; text-decoration: none; color: #ffffff; background-color: #c62f64; border: 1px solid #c62f64; border-radius: 10px; padding: 10px 25px; display: inline-block;">Order
-                                                                        now</a>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </td>
-                                                </tr>
-                                            </table>
-
-
-
-                                        </td>
-                                    </tr>
-                                </table>
-
-                                <!--[if (gte mso 9)|(IE)]>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    <![endif]-->
-
-
-                            </td>
-                        </tr>
-
-                    </table>
-                </td>
-            </tr>
-
-            <!-- END TWO COLUMNS -->
-            <tr>
-                <td style="text-align: center; background-color: #c62f64; padding: 20px; ">
-                    <h3 style="color: #ffffff; Margin:0; font-size: 24px;">Want More Delicious Deals?</h3>
-                    <p style="Margin:10px 0 20px 0; font-size: 16px; color: #ffffff;">Download the Foodora app for
-                        exclusive offers, easy ordering, and real-time tracking.</p>
-                    <!--[if mso]>
-                      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="#" style="height:40px;v-text-anchor:middle;width:200px;" arcsize="10%" strokecolor="#ffffff" fillcolor="#ffffff">
-                        <w:anchorlock/>
-                        <center style="color:#f06292;font-family:sans-serif;font-size:16px;font-weight:bold;">Download the App</center>
-                      </v:roundrect>
-                      <![endif]-->
-                    <![if !mso]>
-                    <a href="#"
-                        style="background-color: #ffffff; color: #c62f64; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; font-family: sans-serif; font-size: 16px; font-weight: bold;">Download
-                        the App</a>
-                    <![endif]>
-                </td>
-            </tr>
-            <!-- START SOCIAL ICONS -->
-
-            <td style="padding: 0;">
-                <table width="100%" style="border-spacing: 0; " role="presentation">
-                    <tr>
-                        <td style="text-align: center; padding: 10px 0 8px 0;">
-                            <a href="https://example.com" target="_blank "> Facebook | </a>
-                            <a href="https://example.com" target="_blank "> Twitter | </a>
-                            <a href="https://example.com" target="_blank "> Instagram </a>
-                        </td>
-                    </tr>
-
-
-                </table>
-            </td>
-            </tr>
-
-
-            <!-- END SOCIAL ICONS -->
-
-
-            <!-- START FOOTER -->
-            <tr style="background-color: #F5F5F5;">
-                <td style="padding: 0; background-color: #D3D3D3;">
-                    <table width="100%" style="border-spacing: 0;" role="presentation">
-                        <tr>
-                            <td style="padding: 10px 0 10px 0; text-align: center; font-size: 16px;">
-                                <!--[if mso]>
-                                <table role="presentation" border="0" cellspacing="0" cellpadding="0">
-                                    <tr>
-                                        <td align="center" style="padding-right: 20px;">
-                                <![endif]-->
-                                <a href="https://apps.apple.com/us/app/foodora-food-delivery/id975208947?mt=8" target="_blank">
-                                    <img src="https://i.ibb.co/ykFhN3Y/IOS.png" alt="IOS" style="vertical-align: middle; width: 140px; height: 44px; margin: 0 10px; display: inline-block;">
-                                </a>
-                                <!--[if mso]>
-                                        </td>
-                                        <td align="center">
-                                <![endif]-->
-                                <a href="https://play.google.com/store/apps/details?id=hu.viala.newiapp&referrer=adjust_reftag%3Dcv6DGaMSFtlP1%26utm_source%3DWebsite%26utm_campaign%3Dhu_homepage_android" target="_blank">
-                                    <img src="https://i.ibb.co/rfZ4YnS/android.png" alt="android"  style="vertical-align: middle; width: 140px; height: 44px; margin: 0 10px; display: inline-block;">
-                                </a>
-                                <!--[if mso]>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <![endif]-->
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 10px 10px; text-align: center; color: #707070;">
-                                <a href="https://foodora.com/terms-conditions" target="_blank" style="color: #707070; text-decoration: none; margin: 0 5px;">Terms & Conditions</a>|
-                                <a href="https://foodora.com/privacy-policy" target="_blank" style="color: #707070; text-decoration: none; margin: 0 5px;">Privacy & Cookie Policy</a>|
-                                <a href="mailto:unsubscribe@marketing.foodora.com?subject=Unsubscribe" style="color: #707070; text-decoration: none; margin: 0 5px;">Unsubscribe</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 10px; text-align: center; color: #707070;">
-                                <p style="font-size: 16px; color: #707070;">To make sure you don't miss out on the latest alerts and recommendations, add hello@marketing.foodora.com to your address book.</p>
-                                <p style="font-size: 16px; color: #707070;">These services are operated and provided by: Oranienburger Strasse 70 Berlin, 10117 Germany</p>
-                            </td>
-                        </tr>
-                        <tr>
-                       
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-            
-            <!-- END FOOTER -->
-
-
-            </table>
-
-            <!--[if (gte mso 9)|(IE)]>
-                </td>
-                </tr>
-                </table>
-            <![endif]-->
-
         </div>
-    </center>
+    </div>
 
+    <script>
+        const closeButton = document.querySelectorAll('[data-button-id="close"]');
+        const overlay = document.getElementById('modalOverlay');
+
+        // modal window function
+        function closeModal() {
+            overlay.style.display = 'none';
+        }
+
+        // click  event listeners for X
+        closeButton.forEach(button => {
+            button.addEventListener('click', closeModal);
+        });
+
+        document.querySelectorAll('[data-button-id]').forEach(function (node) {
+            node.addEventListener('click', function () {
+                if (node.dataset.buttonId === "close") {
+                    closeModal();
+                } else {
+                    appboyBridge.logClick(node.dataset.buttonId);
+                    appboyBridge.closeMessage();
+                }
+            });
+        });
+        document.querySelectorAll('[data-button-id]').forEach(function (node) {
+            node.addEventListener('click', function () {
+                appboyBridge.logClick(node.dataset.buttonId);
+                appboyBridge.closeMessage();
+            });
+        });
+        const slides = [
+            {
+                imageUrl: 'https://i.ibb.co/nDp2SzW/burger.png',
+                title: 'Chef Cajun',
+                subTitle: 'Top rated restaurant | Free delivery',
+                text: 'Explore the newest culinary hotspot right on your doorstep!',
+                orderLink: 'https://www.yemeksepeti.com/restaurant/srbz/chef-cajun-burger'
+
+            },
+            {
+                imageUrl: 'https://i.ibb.co/FY19jGd/poke.png',
+                title: 'The Bowl',
+                subTitle: 'Most ordered now | 1km away',
+                text: 'Dive into the ultimate burger experience with the newest gem in town!',
+                orderLink: 'https://www.yemeksepeti.com/restaurant/prjf/the-bowl-best-of-we-love-prjf'
+            }
+        ];
+        let currentIndex = 0;
+
+        function updateSlide(index) {
+            const slide = slides[index];
+            document.querySelector('.modal__image').style.backgroundImage = `url('${slide.imageUrl}')`;
+            document.getElementById('modalTitle').textContent = slide.title;
+            document.getElementById('modalSubTitle').textContent = slide.subTitle;
+            document.getElementById('modalText').textContent = slide.text;
+            const orderButton = document.querySelector('.modal__btn--main');
+            orderButton.href = slide.orderLink;
+
+        }
+
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateSlide(currentIndex);
+        });
+
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateSlide(currentIndex);
+        });
+        updateSlide(0);
+    </script>
 </body>
 
 </html>
-
